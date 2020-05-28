@@ -16,9 +16,8 @@ class ColourSystem:
     """
 
     # The CIE colour matching function for 380 - 780 nm in 5 nm intervals
-    cmf = np.loadtxt('cie-cmf.txt', usecols=(1,2,3))
 
-    def __init__(self, red, green, blue, white):
+    def __init__(self, red, green, blue, white, cmf_path = 'cie-cmf.txt'):
         """Initialise the ColourSystem object.
 
         Pass vectors (ie NumPy arrays of shape (3,)) for each of the
@@ -26,7 +25,7 @@ class ColourSystem:
         defining the colour system.
 
         """
-
+        self.cmf = np.loadtxt(cmf_path, usecols=(1,2,3))
         # Chromaticities
         self.red, self.green, self.blue = red, green, blue
         self.white = white
